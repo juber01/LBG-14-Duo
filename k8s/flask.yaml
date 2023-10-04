@@ -1,11 +1,11 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: backend
+  name: flask-app
 spec:
   type: ClusterIP
   selector:
-    app: backend
+    app: flask
   ports:
   - protocol: TCP
     port: 5500
@@ -14,27 +14,29 @@ spec:
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: backend
+  name: flask-deployment
   labels:
-    app: backend
+    app: flask
 spec:
-  replicas: 5
+  replicas: 10
   selector:
     matchLabels:
-      app: backend
+      app: flask
   strategy:
     rollingUpdate:
-      maxSurge: 10% 
-      maxUnavailable: 25%
+      maxSurge: 20%
+      maxUnavailable: 20%
   template:
     metadata:
       labels:
-        app: backend
+        app: flask
     spec:
       containers:
-      - name: backend
+      - name: flask-container
+        image: juber81/duo-deploy-flask:latest
         imagePullPolicy: Always
-        image: stratcastor/duo-backend:latest
         ports:
         - containerPort: 5500
-
+        env:
+        - name: YOUR_NAME
+          value: Juber
