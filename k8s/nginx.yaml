@@ -33,7 +33,7 @@ spec:
     spec:
       containers:
       - name: nginx-container
-        image: juber81/duo-deploy-nginx:latest
+        image: juber81/duo-nginx:latest
         imagePullPolicy: Always
         ports:
         - containerPort: 80
