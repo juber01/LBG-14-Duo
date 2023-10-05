@@ -33,7 +33,7 @@ pipeline{
                 steps{
                     sh '''
                     kubectl apply -f ./k8s/ -n production
-                    kubectl rollout restart deployment flask-app -n production
+                    kubectl rollout restart deployment flask-deployment -n production
                     '''
                 }
             }
