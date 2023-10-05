@@ -32,7 +32,7 @@ pipeline{
             stage('Deploy Containers'){
                 steps{
                     sh '''
-                    kubectl apply -f ./k8/ -n production
+                    kubectl apply -f ./k8s/ -n production
                     kubectl rollout restart deployment flask-app -n production
                     '''
                 }
